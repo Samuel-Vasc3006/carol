@@ -6,6 +6,19 @@
 <title> Para Minha Carol 💙</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <style>
+  .destaque-romantico {
+  border: 2px dashed #ff99cc;
+  padding: 15px 20px;
+  border-radius: 12px;
+  background-color: #fff0f5;
+  color: #a82d57;
+  font-style: italic;
+  font-size: 1.1em;
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 0 10px rgba(255, 153, 204, 0.2);
+}
+
   #overlay {
   position: fixed;
   z-index: 9999;
@@ -81,7 +94,7 @@
   .galeria {
     width: 90vw;
     max-width: 400px;
-    height: 450px
+    height: 450px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgb(184 78 120 / 0.5);
@@ -132,7 +145,30 @@
       font-size: 2em;
     }
   }
+  #flores span {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: cair 6s linear infinite;
+    user-select: none;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  @keyframes cair {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
 </style>
+
 </head>
 <body>
 <div id="overlay">
@@ -142,18 +178,20 @@
 </div>
 <header>
   <h1>Para Carolina 💙</h1>
+  <div class="destaque-romantico">
   <p>Meu bem, eu sei que você já sabe de tudo isso. Mas nunca é ruim dizer de novo e de novo e de novo...</p>
+  </div>
 </header>
 
 <div id="contador">
-  Carinho acumulado por nós: <span id="tempo">calculando...</span>
+  💙🕐Todo o amor acumulado por nós: <span id="tempo">calculando...</span>
 </div>
 
 <div class="galeria" aria-label="Galeria de fotos">
   <img src="img/8Imagem do WhatsApp de 2025-06-02 à(s) 19.16.40_aaf4b47f.jpg" class="active" alt="Foto 1" />
   <img src="img/IMG-20250602-WA0308.jpg" />
   <img src="img/9Imagem do WhatsApp de 2025-06-02 à(s) 19.16.39_b4115d5d.jpg" />
-  <img src="img/Imagem do WhatsApp de 2025-06-02 à(s) 18.31.15_6ba7ab2e.jpg" />
+  <img src="img/Imagem do WhatsApp de 2025-06-09 à(s) 19.55.21_fc3e4190.jpg" />
   <img src="img/Imagem do WhatsApp de 2025-06-02 à(s) 18.31.15_6ba7ab2e.jpg" />
   <img src="img/IMG-20250602-WA0304.jpg" alt="Foto 6" />
   <img src="img/IMG-20250602-WA0305.jpg" alt="Foto 7" />
@@ -171,7 +209,7 @@
 <footer>
   <iframe class="spotify-player" src="https://open.spotify.com/embed/track/1dGr1c8CrMLDpV6mPbImSI?utm_source=generator" width="300" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
 </footer>
-
+<div id="flores"></div>
 <script>
   // Contador de tempo desde 25/08/2023 22:00
   function atualizarContador() {
@@ -237,6 +275,23 @@ document.getElementById('entrar').addEventListener('click', function () {
     overlay.style.display = 'none';
   }, 1000); // espera a transição terminar
 });
+const containerFlores = document.getElementById("flores");
+  const flores = ["🌸", "🌷", "🌹", "🌼", "💐"]; // emojis de flor
+
+  function criarFlor() {
+    const flor = document.createElement("span");
+    flor.textContent = flores[Math.floor(Math.random() * flores.length)];
+    flor.style.left = Math.random() * 100 + "vw";
+    flor.style.fontSize = 16 + Math.random() * 24 + "px";
+    flor.style.animationDuration = 4 + Math.random() * 4 + "s";
+    containerFlores.appendChild(flor);
+
+    setTimeout(() => {
+      flor.remove();
+    }, 8000);
+  }
+
+  setInterval(criarFlor, 400);
 </script>
 
 </body>
